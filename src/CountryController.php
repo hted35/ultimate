@@ -18,7 +18,7 @@ class CountryController
             $item->has_settings = Country::countryHasSettings($item->country_code);
             $data['countries'][] = $item;
         }
-        $data['documents'] = $this->getDocuments();
+        $data['documents'] = \Hultimate::getDocuments();
         return view('admin.country.countries', $data);
     }
     public function countrySave(Request $request, $country_code){
@@ -39,15 +39,7 @@ class CountryController
                 $data['country'] = $item;
             }
         }
-        $data['documents'] = $this->getDocuments();
+        $data['documents'] = \Hultimate::getDocuments();
         return view('admin.country.countries-view', $data);
-    }
-    private function getDocuments(){
-        return [
-            'tcKimlikNo' =>['code'=>'tcKimlikNo', 'title'=> __('Tc Kimlik Numarası'), 'description'=>__('Tc Kimlik Numarası Açıklaması')],
-            'tcKimlik' =>['code'=>'tcKimlik', 'title'=> __('Tc Kimlik Belgesi'), 'description'=>__('Tc Kimlik Belgesi Açıklaması')],
-            'socialNumber' =>['code'=>'socialNumber', 'title'=> __('Sosyal Güvenlik Numarası'), 'description'=>__('Tc Sosyal Güvenlik Açıklaması')],
-            'driverLicense' =>['code'=>'driverLicense', 'title'=> __('Sürücü Belgesi'), 'description'=>__('Sürücü Belgesi Açıklaması')],
-        ];
     }
 }

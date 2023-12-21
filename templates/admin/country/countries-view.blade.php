@@ -1,4 +1,7 @@
 @if($country)
+    <?php
+        $settings_document = isset($country->settings['document'])?$country->settings['document']:[];
+        ?>
 <form action="{{ route('admin.expanses.country.save', $country->country_code ) }}" method="post" enctype="multipart/form-data">
     @csrf
     <div class="modal-body">
@@ -12,7 +15,7 @@
                             @forelse($documents as $item)
                                 <div class="form-group col-lg-12">
                                     <label>
-                                        <input type="checkbox" name="setting[{{ $item['code'] }}]" class="" value="1" {{ Hted35\Hattat::_IsChecked($country->settings, $item['code']) }}> {{ $item['title'] }}
+                                        <input type="checkbox" name="setting[document][{{ $item['code'] }}]" class="" value="1" {{ Hted35\Hattat::_IsChecked($settings_document, $item['code']) }}> {{ $item['title'] }}
                                         <small><i class="la la-info-circle"></i> {{ $item['description'] }}</small>
                                     </label>
                                 </div>
