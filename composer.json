@@ -24,6 +24,7 @@
     },
     "autoload": {
         "files": ["helper/loader.php"],
+        "classmap": ["helper/loader.php"],
         "psr-4": {
             "Hted35\\": "src/"
         }
