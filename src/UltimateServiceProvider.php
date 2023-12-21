@@ -27,7 +27,6 @@ class UltimateServiceProvider extends ServiceProvider{
             'as'=>'admin.expanses.',
             'middleware' => ['web', 'admin']
         ], function() {
-            //Route::get('/country2', ['\\Hted35\\Country', 'countryList'])->name('country2');
             Route::get('/', ['\\Hted35\\Country', 'index'])->name('index');
             Route::get('/country', ['\\Hted35\\Country', 'countryList'] )->name('country');
             Route::get('/country/{id}', ['\\Hted35\\Country', 'countryView'] )->name('country.view');
