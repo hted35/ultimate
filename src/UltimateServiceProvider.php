@@ -3,6 +3,7 @@
 namespace Hted35;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Route;
 
 class UltimateServiceProvider extends ServiceProvider{
     /**
@@ -10,25 +11,27 @@ class UltimateServiceProvider extends ServiceProvider{
      */
     public function register(): void
     {
-        $this->setRoutes();
+        //self::setNewRoutes();
     }
     /**
      * Bootstrap any application services.
      */
     public function boot(): void
     {
-
+        self::setNewRoutes();
     }
 
-    private function setRoutes(){
-        Route::middleware('admin')->group(function () {
-            //Plugins
-            Route::name('expanses.')->prefix('expanses')->controller('\\Hted35\\Country')->group(function(){
-                Route::get('/','index')->name('index');
-                Route::get('/country','countryList')->name('country');
-                Route::get('/country/{id}','countryView')->name('country.view');
-                Route::post('/country/{id}','countrySave')->name('country.save');
-            });
+    static function setNewRoutes(){
+        Route::group([
+            'prefix'=>'admin/expanses',
+            'as'=>'admin.expanses.',
+            'middleware' => ['web', 'admin']
+        ], function() {
+            //Route::get('/country2', ['\\Hted35\\Country', 'countryList'])->name('country2');
+            Route::get('/', ['\\Hted35\\Country', 'index'])->name('index');
+            Route::get('/country', ['\\Hted35\\Country', 'countryList'] )->name('country');
+            Route::get('/country/{id}', ['\\Hted35\\Country', 'countryView'] )->name('country.view');
+            Route::post('/country/{id}', ['\\Hted35\\Country', 'countrySave'] )->name('country.save');
         });
     }
 }
