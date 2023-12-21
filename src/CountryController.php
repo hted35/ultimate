@@ -4,7 +4,7 @@ namespace Hted35;
 
 use hted35\ultimate\model\Expanses;
 use Illuminate\Http\Request;
-use App\Models\Country;
+use Hted35\Ultimate\model\Country;
 
 class CountryController
 {
