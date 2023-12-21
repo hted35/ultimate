@@ -1,0 +1,35 @@
+{
+    "name": "hted35/ultimate",
+    "description": "Expension Ultimate",
+    "type": "library",
+    "keywords": [
+        "php"
+    ],
+    "homepage": "https://github.com/hted35/helper",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Hted35",
+            "homepage": "http://www.hted35.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.0.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~6.0 || ~7.0 || ~9.0"
+    },
+    "suggest": {
+        "ext-intl": "Use hted35"
+    },
+    "autoload": {
+        "psr-4": {
+            "Hted35\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Hted35\\tests\\": "tests/"
+        }
+    }
+}
