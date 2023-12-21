@@ -2,33 +2,31 @@
 
 namespace Hted35;
 
-use App\Models\Expanses;
+use hted35\ultimate\model\Expanses;
 use Illuminate\Http\Request;
+use App\Models\Country;
 
-class Country
+class CountryController
 {
     public function countryList(Request $request){
-        view()->addLocation(__DIR__.'/../templates');
         $data['pageTitle'] = "Countries";
         $app = new \App\Http\Controllers\Api\AppController();
         $response = $app->getCountries();
         $result = $response->getData();
         $countries = $result->data->countries;
         foreach($countries as $item){
-            $item->has_settings = Expanses::countryHasSettings($item->country_code);
+            $item->has_settings = Country::countryHasSettings($item->country_code);
             $data['countries'][] = $item;
         }
         $data['documents'] = $this->getDocuments();
         return view('admin.country.countries', $data);
     }
     public function countrySave(Request $request, $country_code){
-        view()->addLocation(__DIR__.'/../templates');
-        Expanses::countrySetSettings($country_code, $request->input('setting', []));
+        Country::countrySetSettings($country_code, $request->input('setting', []));
         $notify[] = ['success', 'Country Settings Updated'];
         return back()->withNotify($notify);
     }
     public function countryView(Request $request, $country_code){
-        view()->addLocation(__DIR__.'/../templates');
         $data['pageTitle'] = "Countries";
         $app = new \App\Http\Controllers\Api\AppController();
         $response = $app->getCountries();
@@ -37,7 +35,7 @@ class Country
         $data['country'] = null;
         foreach($countries as $item){
             if($item->country_code == $country_code){
-                $item->settings = Expanses::countryGetSettings($item->country_code);
+                $item->settings = Country::countryGetSettings($item->country_code);
                 $data['country'] = $item;
             }
         }

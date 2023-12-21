@@ -19,6 +19,8 @@ class UltimateServiceProvider extends ServiceProvider{
     public function boot(): void
     {
         self::setNewRoutes();
+        view()->addLocation(__DIR__.'/../templates');
+
     }
 
     static function setNewRoutes(){
@@ -27,10 +29,11 @@ class UltimateServiceProvider extends ServiceProvider{
             'as'=>'admin.expanses.',
             'middleware' => ['web', 'admin']
         ], function() {
-            Route::get('/', ['\\Hted35\\Country', 'index'])->name('index');
-            Route::get('/country', ['\\Hted35\\Country', 'countryList'] )->name('country');
-            Route::get('/country/{id}', ['\\Hted35\\Country', 'countryView'] )->name('country.view');
-            Route::post('/country/{id}', ['\\Hted35\\Country', 'countrySave'] )->name('country.save');
+            Route::get('/', ['\\Hted35\\CountryController', 'index'])->name('index');
+            Route::get('/country', ['\\Hted35\\CountryController', 'countryList'] )->name('country');
+            Route::get('/country/{id}', ['\\Hted35\\CountryController', 'countryView'] )->name('country.view');
+            Route::post('/country/{id}', ['\\Hted35\\CountryController', 'countrySave'] )->name('country.save');
         });
+
     }
 }
