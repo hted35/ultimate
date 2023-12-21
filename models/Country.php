@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace Hted35\Ultimate\model;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
