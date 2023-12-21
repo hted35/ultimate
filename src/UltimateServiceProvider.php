@@ -11,7 +11,7 @@ class UltimateServiceProvider extends ServiceProvider{
      */
     public function register(): void
     {
-        //self::setNewRoutes();
+
     }
     /**
      * Bootstrap any application services.
